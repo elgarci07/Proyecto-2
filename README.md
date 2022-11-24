@@ -1,1 +1,1 @@
-# Proyecto-2
+# PROYECTO2_RESERVA_DE_MESAS
