@@ -1,5 +1,5 @@
 <?php
-include "../config/config.php";
+include "../config/conexion.php";
 
 // On submit ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 if (isset($_POST['boton'])) {
@@ -14,7 +14,7 @@ if (isset($_POST['boton'])) {
 
 //   die();
 
-    $sentencia = $conn->prepare("SELECT * FROM tbl_empleado WHERE email=? and password=?;");
+    $sentencia = $conexion->prepare("SELECT * FROM tbl_empleado WHERE email=? and password=?;");
     $sentencia->execute([$username, $password]);
     $datos = $sentencia->fetch(PDO::FETCH_ASSOC);
 
@@ -23,19 +23,19 @@ var_dump($datos);
     session_start();
 
     if ($datos === FALSE) {
-        // header('Location: login.php');
+        header('Location: login.php');
         echo "no chuuta";
         
 
     }elseif($sentencia->rowCount() == 1){
         $_SESSION['nombre'] = $datos['email'];
         echo $_SESSION['nombre'];
-        die();
+        // die();
         header('Location: ../view/index.php');
         echo "chuta";
 
     }else{
-        echo "pene";
+        echo "no va";
     }
 
 }
