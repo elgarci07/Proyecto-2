@@ -7,7 +7,7 @@
 require_once "../config/conexion.php";
 if(empty($_POST['filtro'])){
 
-    $consulta = $conexion->prepare("SELECT * FROM tbl_empleado");
+    $consulta = $conexion->prepare("SELECT * FROM tbl_empleado INNER JOIN tbl_cargo ON tbl_empleado.fk_cargo_empleado = tbl_cargo.id_cargo");
     $consulta->execute();
 
 }else{
@@ -36,9 +36,10 @@ if(empty($_POST['filtro'])){
                 <td>" . $data['nom_empleado'] . "</td>
                 <td>" . $data['ape_empleado'] . "</td>
                 <td>" . $data['dni_empleado'] . "</td>
-                <td>" . $data['fk_cargo_empleado'] . "</td>
+                <td>" . $data['nom_cargo'] . "</td>
                 <td>" . $data['email'] . "</td>
                 <td>" . $data['password'] . "</td>
+                
                 <td>
                     <button type='button' class='btn btn-success' onclick=Editar('" . $data['id_empleado'] . "')>Editar</button>
                     <button type='button' class='btn btn-danger' onclick=Eliminar('" . $data['id_empleado'] . "')>Eliminar</button>

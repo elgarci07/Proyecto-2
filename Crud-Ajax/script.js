@@ -40,16 +40,16 @@ function Eliminar(id_empleado) {
     ajax.open("POST", "eliminar.php");
 
     ajax.onload = function() {
-        if (ajax.status === 200) {
+        if (ajax.status == 200) {
             if (ajax.responseText == "OK") {
                 alert('Elemento eliminado con id: ' + id_empleado);
                 listar('');
             }
         } else {
             console.log("no va el else");
-            // alert("no 200");
-            alert('Elemento eliminado con id: ' + id_empleado);
-            listar('');
+            alert("no 200");
+            // alert('Elemento eliminado con id: ' + id_empleado);
+            //listar('');
         }
     };
     ajax.send(formdata);

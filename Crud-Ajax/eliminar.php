@@ -2,7 +2,7 @@
 require_once "../config/conexion.php";
 $data = $_POST['id_empleado'];
 
-echo $data;
+//echo $data;
 
 
 $query = $conexion->prepare("DELETE FROM tbl_empleado WHERE id_empleado = ?");
@@ -14,7 +14,7 @@ $result = $query->execute();
 
 	// if ($result) {
 		echo "OK";
-		header('Location: index.php');
+		// header('Location: index.php');
 	// }else{
 	// 	echo "Error";
 	// }
