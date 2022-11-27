@@ -35,6 +35,10 @@ session_start();
         </nav>
     </header>
 
+    <!-- JS DE RESERVA :::::::::::::::::::::::::::::::::::::::::::::: -->
+
+
+
     <!--Body ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
   
     <div class="container">
@@ -70,16 +74,33 @@ session_start();
       </div>
 
       <!-- Modal body -->
-      <div class="modal-body">
-      <form action="/action_page.php">
+    <div class="modal-body">
+      <form action="../.php">
           <label for="mesa">Mesa:</label><br>
-          <input type="number" id="mesa" name="mesa" value="John" min="1" max="20"><br>
+          <input type="number" id="mesa" name="mesa" min="1" max="20"><br>
+          <label for="mesa">Cliente:</label><br>
+          <input type="text" id="cliente" name="cliente" placeholder="Cliente" min="1" max="20"><br>
           <label for="comensales">Comensales:</label><br>
-          <input type="number" id="comensales" name="comensales" value="Doe" min="1"><br><br>
-          <input type="submit" value="Submit">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <input type="number" id="comensales" name="comensales" min="1">
+          <br>
+        <select name="hora" id="hora">
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="20:00">20:00</option>
+            <option value="21:00">21:00</option>
+            <option value="22:00">22:00</option>
+            <option value="23:00">23:00</option>
+        </select>
+      <br>
+      <br>
+        <input type="date" id="start" name="trip-start" value="2022-11-27" min="2022-11-27" max="2023-12-30">
+      <br>
+      <br>
+        <input type="submit" class="btn btn-success" value="Reservar">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
       </form> 
-      </div>
+    </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
@@ -89,20 +110,18 @@ session_start();
     </div>
   </div>
 </div>
-
-
               <!-- TABLA -->
-
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">ID Reserva</th>
-                            <th scope="col">ID Camarero</th>
                             <th scope="col">Cliente</th>
-                            <th scope="col">Personas</th>
-                            <th scope="col">Dia Inicio</th>
-                            <th scope="col">Dia Fin</th>
-                            <th scope="col">Acciones</th>
+                            <th scope="col">Comensales</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Hora</th>
+                            <th scope="col">Nº Mesa</th>
+                            <th scope="col">Atendido por:</th>
+                            
                         </tr>
                     </thead>
                     <tbody id="resultado"></tbody>
@@ -110,7 +129,9 @@ session_start();
             </div>
         </div>
     </div>
-    <script src="../static/js/script.js"></script>
+    <script src="../reserva/today.js"></script>
+    <script src="../reserva/scriptreserva.js"></script> 
+    
 </body>
 
 </html>
@@ -124,13 +145,13 @@ if (!isset($_SESSION['nombre'])) {
   echo $_SESSION['nombre'];
   
   
-   header('Location: login.php');
+   header('Location: ../index.html');
    
 } // Ha entrado si no salta
 
 // Cerrar sesion ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 if (isset($_POST['but_logout'])) {
   session_destroy();
-  header('Location: login.php');
+  header('Location: ../index.html');
 }
 ?>

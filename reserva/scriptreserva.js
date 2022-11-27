@@ -6,12 +6,14 @@ function listar(filtro) {
     formdata.append('filtro', filtro);
 
     const ajax = new XMLHttpRequest();
-    ajax.open('POST', 'listar.php');
+    ajax.open('POST', '../reserva/listarreserva.php');
     ajax.onload = function() {
         if (ajax.status == 200) {
             resultado.innerHTML = ajax.responseText;
+            console.log('Entra');
         } else {
             resultado.innerText = 'Error';
+            console.log('NO Entra');
         }
     }
     ajax.send(formdata);
@@ -28,21 +30,21 @@ buscar.addEventListener("keyup", () => {
 
 listar('');
 
-function Eliminar(id_empleado) {
+function Eliminar(id_registro) {
     //generar ajax
 
     const formdata = new FormData();
-    formdata.append('id_empleado', id_empleado);
-    console.log(id_empleado)
+    formdata.append('id_registro', id_registro);
+    console.log(id_registro)
 
     const ajax = new XMLHttpRequest();
 
-    ajax.open("POST", "eliminar.php");
+    ajax.open("POST", "../reserva/eliminarreserva.php");
 
     ajax.onload = function() {
         if (ajax.status == 200) {
             if (ajax.responseText == "OK") {
-                alert('Elemento eliminado con id: ' + id_empleado);
+                alert('Elemento eliminado con id: ' + id_registro);
                 listar('');
             }
         } else {
