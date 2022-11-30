@@ -7,11 +7,15 @@
 require_once "../config/conexion.php";
 if(empty($_POST['filtro'])){
 
+
+    
+
     $consulta = $conexion->prepare("SELECT * FROM tbl_registro");
     $consulta->execute();
 
 }else{
     $filtro=$_POST['filtro'];
+
 
 //PREPARAMOS FILTRO CON LOS CAMPOS :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 

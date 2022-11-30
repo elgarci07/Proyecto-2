@@ -1,5 +1,23 @@
 <?php
 session_start();
+
+
+  // echo $_SESSION['id_empleado'];
+  
+
+include "../config/conexion.php";
+
+// Chequea si el usuario esta iniciado, en caso de que no vuelve a login ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+if (empty($_SESSION['nombre'])) {
+  // echo $_SESSION['nombre'];
+  // echo "<script>location.href='../view/index.php'</script>";
+  //  header('Location: ../view/index.php');
+
+  header('Location: ../view/login.php');
+}// Ha entrado si no salta
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +45,7 @@ session_start();
           </div>
 
             <div class="ms-auto p-2 bd-highlight text-white">
-                <form method='post' action="">
+                <form method='post' action="../function/cerrarlogin.php">
                     <button class="btn btn-danger" type="submit" value="Salir" name="but_logout"><i
                             class="fa-solid fa-right-from-bracket"></i></button>
                 </form>
@@ -49,7 +67,7 @@ session_start();
 
 
                 
-<!-- TABLA -->
+<!-- BUSCAR -->
 
   <form action="" method="post" id="frmbusqueda">
       <div class="input-group mb-3">
@@ -75,37 +93,54 @@ session_start();
 
       <!-- Modal body -->
     <div class="modal-body">
-      <form action="../.php">
+      <form id="crearreserva">
+      <!-- method="POST" action="../reserva/crearreserva.php" -->
           <label for="mesa">Mesa:</label><br>
-          <input type="number" id="mesa" name="mesa" min="1" max="20"><br>
+            <select name="mesa" id="mesa">
+              <?php
+                $query = $conexion -> prepare ("SELECT * FROM tbl_mesa");
+                $query -> execute();
+              
+                $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
+                  foreach ($resultado as $valores) {
+                      
+                  echo '<option value=" Mesa'.$valores["id_mesa"].'">'.$valores["num_mesa"].'</option>';
+                }
+              ?>
+            </select>
+            <br>
           <label for="mesa">Cliente:</label><br>
           <input type="text" id="cliente" name="cliente" placeholder="Cliente" min="1" max="20"><br>
           <label for="comensales">Comensales:</label><br>
           <input type="number" id="comensales" name="comensales" min="1">
           <br>
-        <select name="hora" id="hora">
-            <option value="13:00">13:00</option>
-            <option value="14:00">14:00</option>
-            <option value="15:00">15:00</option>
-            <option value="20:00">20:00</option>
-            <option value="21:00">21:00</option>
-            <option value="22:00">22:00</option>
-            <option value="23:00">23:00</option>
-        </select>
+          <label for="mesa">Quien deseas que sea tu camarero:</label><br>
+          <select name="fk_id_empleado" id="fk_id_empleado">
+              <?php
+                $query = $conexion -> prepare ("SELECT * FROM tbl_empleado where id=1");
+                $query -> execute();
+              
+                $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
+                  foreach ($resultado as $valores) {
+                      
+                  echo '<option value=" Mesa'.$valores["id_empleado"].'">'.$valores["nom_empleado"].'</option>';
+                }
+              ?>
+            </select>
       <br>
       <br>
-        <input type="date" id="start" name="trip-start" value="2022-11-27" min="2022-11-27" max="2023-12-30">
+        <input type="date" id="fecha" name="fecha" value="2022-11-27" min="2022-11-27" max="2023-12-30">
       <br>
       <br>
-        <input type="submit" class="btn btn-success" value="Reservar">
+        <input type="submit" class="btn btn-success" data-bs-dismiss="modal">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
       </form> 
     </div>
 
       <!-- Modal footer -->
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div>
+      </div> -->
 
     </div>
   </div>
@@ -135,23 +170,3 @@ session_start();
 </body>
 
 </html>
-<?php
-  
-
-include "../config/conexion.php";
-
-// Chequea si el usuario esta iniciado, en caso de que no vuelve a login ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-if (!isset($_SESSION['nombre'])) {
-  echo $_SESSION['nombre'];
-  
-  
-   header('Location: ../index.html');
-   
-} // Ha entrado si no salta
-
-// Cerrar sesion ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-if (isset($_POST['but_logout'])) {
-  session_destroy();
-  header('Location: ../index.html');
-}
-?>

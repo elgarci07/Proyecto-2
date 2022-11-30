@@ -2,42 +2,48 @@
 include "../config/conexion.php";
 
 // On submit ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-if (isset($_POST['boton'])) {
+if (isset($_POST['boton'])) 
+{
 
-  $username = $_POST['nombre'];
-  $password = $_POST['pwd'];
+        $username = $_POST['nombre'];
+        $password = $_POST['pwd'];
 
 
 
-  echo $username;
-  echo $password;
+        // echo $username;
+        // echo $password;
 
-//   die();
+        //   die();
 
-    $sentencia = $conexion->prepare("SELECT * FROM tbl_empleado WHERE email=? and password=?;");
-    $sentencia->execute([$username, $password]);
-    $datos = $sentencia->fetch(PDO::FETCH_ASSOC);
+            $sentencia = $conexion->prepare("SELECT * FROM tbl_empleado WHERE email=? and password=?");
+            $sentencia->execute([$username, $password]);
+            
+            $datos = $sentencia->fetch(PDO::FETCH_ASSOC);
+                       
+        //var_dump($datos);
+        // echo $datos;
+            session_start();
 
-var_dump($datos);
-// echo $datos;
-    session_start();
+            if (empty($datos)) {
+                header('Location: ../view/login.php');
+                // echo "no chuuta";
+                
 
-    if ($datos === FALSE) {
-        header('Location: login.php');
-        echo "no chuuta";
-        
-
-    }elseif($sentencia->rowCount() == 1){
-        $_SESSION['nombre'] = $datos['email'];
-        echo $_SESSION['nombre'];
-        // die();
-        header('Location: ../view/index.php');
-        echo "chuta";
-
-    }else{
-        echo "no va";
-    }
-
+            }
+            
+            else{
+                // echo "no va";
+                $_SESSION['nombre'] = $datos['email'];
+                // echo $_SESSION['nombre'];
+                // $_SESSION['id_empleado'] = $username;
+                $_SESSION['id_empleado'] = $datos['id_empleado'];
+                // print_r($_SESSION['id_empleado']);
+                // die();
+                // print_r($username);
+                // echo "hola";
+                
+                header('Location: ../view/index.php');
+            }
 }
 
 ?>

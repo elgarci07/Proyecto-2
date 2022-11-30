@@ -1,23 +1,23 @@
 <?php
+
 require_once "../config/conexion.php";
-$codigo = $_POST['codigo'];
-$producto = $_POST['producto'];
-$precio = $_POST['precio'];
-$cantidad = $_POST['cantidad'];
+$nombre = $_POST['nombre'];
+$apellido = $_POST['apellido'];
+$dni = $_POST['dni'];
+$cargo = $_POST['cargo'];
+$mail = $_POST['mail'];
+$password = $_POST['password'];
 
-// print_r($codigo);
-// print_r($producto);
-// print_r($precio);
-// print_r($cantidad);
 
-// die();
+$query = $conexion->prepare("INSERT INTO `tbl_empleado`(`id_empleado`, `nom_empleado`, `ape_empleado`, `dni_empleado`, `fk_cargo_empleado`, `password`, `email`) VALUES 
+(NULL,?,?,?,?,?,?)");
 
-$query = $conexion->prepare("INSERT INTO `productos`( `codigo`, `producto`, `precio`, `cantidad`) VALUES (?,?,?,?)");
-$query->bindParam(1, $codigo);
-$query->bindParam(2, $producto);
-$query->bindParam(3, $precio);
-$query->bindParam(4, $cantidad);
+$query->bindParam(1, $nombre);
+$query->bindParam(2, $apellido);
+$query->bindParam(3, $dni);
+$query->bindParam(4, $cargo);
+$query->bindParam(5, $password);
+$query->bindParam(6, $mail);
 $query->execute();
-
 
 echo "OK";
