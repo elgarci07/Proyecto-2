@@ -8,7 +8,6 @@ require_once "../config/conexion.php";
 if(empty($_POST['filtro'])){
 
 
-    
 
     $consulta = $conexion->prepare("SELECT * FROM tbl_registro");
     $consulta->execute();
@@ -46,9 +45,11 @@ if(empty($_POST['filtro'])){
                 
                 
                 <td>
-                    <button type='button' class='btn btn-success' onclick=Editar('" . $data['id_registro'] . "')>Editar</button>
+                   
                     <button type='button' class='btn btn-danger' onclick=Eliminar('" . $data['id_registro'] . "')>Eliminar</button>
                 </td>        
             </tr>";
     };
     
+
+    // <button type='button' class='btn btn-success' onclick=editar('" . $data['id_registro'] . "')>Editar</button>

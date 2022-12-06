@@ -4,7 +4,7 @@
 $server = "localhost";
 $username = "root";
 $password = "";
-$dbname = "bd_restaurante2";
+$dbname = "bd_restaurante";
 
 // Crear conexión ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 try{

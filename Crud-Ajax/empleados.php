@@ -68,8 +68,7 @@ if (empty($_SESSION['nombre'])) {
 
 <!-- modal Editar :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Crear empleado</button>
-  <br>
+
             
 <!-- The Modal -->
 <div class="modal" id="myModalEdit">
@@ -159,7 +158,8 @@ if (empty($_SESSION['nombre'])) {
 
 <!-- modal Crear :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
 
- 
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Crear empleado</button>
+  <br>
 <!-- The Modal -->
 <div class="modal" id="myModal">
   <div class="modal-dialog">

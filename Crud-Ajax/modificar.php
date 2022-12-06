@@ -17,7 +17,7 @@ $query->bindParam(2, $apellido);
 $query->bindParam(3, $dni);
 $query->bindParam(4, $cargo);
 $query->bindParam(5, $password);
-$query->bindParam(6, $mail);
+$query->bindParam(6, $email);
 $query->bindParam(7, $id);
 $query->execute();
 

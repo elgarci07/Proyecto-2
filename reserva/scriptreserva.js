@@ -82,11 +82,12 @@ function Eliminar(id_registro) {
 function crear() {
 
     var form = document.getElementById('crearreserva');
-    console.log(form);
+    // console.log(form);
     const formdata = new FormData(form);
 
 
     const ajax = new XMLHttpRequest();
+    console.log("llega");
     console.log(ajax);
     ajax.open("POST", "../reserva/crearreserva.php");
     // console.log(ajax);
@@ -121,27 +122,28 @@ crearreserva.addEventListener("submit", (event) => {
 
 
 
-function editar(id_empleado) {
+function editar(id_registro) {
     // var origen = document.getElementById("origen");
     // origen.value = id_empleado;
-    console.log(id_empleado);
+    console.log(id_registro);
     var formdata = new FormData();
-    formdata.append('id_empleado', id_empleado);
+    formdata.append('id_registro', id_registro);
     var ajax = new XMLHttpRequest();
-    ajax.open('POST', '../Crud-Ajax/modalactualizar.php');
+    ajax.open('POST', '../reserva/modalreserva.php');
     // console.log(ajax)
     ajax.onload = function() {
         if (ajax.status == 200) {
             var json = JSON.parse(ajax.responseText);
             console.log(ajax.responseText);
             //alert(json.apellido_camarero);
-            document.getElementById('id_empleado').value = json.id_empleado;
-            document.getElementById('nombre').value = json.nom_empleado;
-            document.getElementById('mail').value = json.email;
-            document.getElementById('password').value = json.password;
-            document.getElementById('dni').value = json.dni_empleado;
-            document.getElementById('apellido').value = json.ape_empleado;
-            document.getElementById('cargo').value = json.fk_cargo_empleado;
+            document.getElementById('id_registro').value = json.id_registro;
+            document.getElementById('cliente').value = json.cliente;
+            document.getElementById('fecha').value = json.fecha;
+            document.getElementById('hora').value = json.hora;
+            document.getElementById('id_mesa').value = json.id_mesa;
+            document.getElementById('id_camarero').value = json.id_camarero;
+            document.getElementById('comensales').value = json.num_comensales;
+
             // document.getElementById('registrar').value = "Actualizar";
             let myModal = new bootstrap.Modal(document.getElementById('myModalEdit'), {});
             myModal.show();
@@ -181,3 +183,31 @@ function update() {
     ajax.send(formdata);
     // form.reset();
 }
+
+
+// crearreserva.addEventListener("change", (event) => {
+//     event.preventDefault();
+//     crear();
+// });
+
+
+// const getHora = (comida) => {
+//     const ajax = new XMLHttpRequest();
+//     const formdata = new FormData();
+//     formdata.append('comida', comida)
+//     ajax.open('POST', '../controller/get_comida_hora.php');
+//     ajax.onload = () => {
+//         if (ajax.status == 200) {
+//             console.log(ajax.responseText)
+//             let resul = JSON.parse(ajax.responseText);
+//             let horas = resul[0].horas.split(',');
+//             var resul_horas = '';
+//             horas.forEach(element => {
+//                 resul_horas += `<option value="${element}">${element}</option>`;
+//             });
+//             document.getElementById('hora_f').innerHTML = resul_horas;
+//         }
+
+//     }
+//     ajax.send(formdata);
+// }

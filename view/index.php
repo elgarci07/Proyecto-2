@@ -42,7 +42,7 @@ if (empty($_SESSION['nombre'])) {
         <!-- LINKS MENU -->
         <div class="p-2 bd-highlight text-white" style="font-size:20px"><a style="text-decoration: none; color: white;" href="../view/index.php">Reservas</a></div>
         <div class="p-2 bd-highlight text-white" style="font-size:20px"><a style="text-decoration: none; color: white;" href="../Crud-Ajax/empleados.php">Empleados</a></div>
-          </div>
+        <div class="p-2 bd-highlight text-white" style="font-size:20px"><a style="text-decoration: none; color: white;" href="../mesas/mesas.php">Mesas</a></div>
 
             <div class="ms-auto p-2 bd-highlight text-white">
                 <form method='post' action="../function/cerrarlogin.php">
@@ -74,16 +74,16 @@ if (empty($_SESSION['nombre'])) {
           <input type="text" name="buscar" id="buscar" placeholder="Buscar..." class="form-control">
       </div>
   </form>
-
-  <!-- BOTON AÑADIR RESERVA -->
   
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Reservar</button>
-  <br>
-            
+
+  
+
+<!-- modal Editar :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->    
+
 <!-- The Modal -->
-<div class="modal" id="myModal">
+ <div class="modal" id="myModalEdit">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content"> 
 
       <!-- Modal Header -->
       <div class="modal-header">
@@ -93,58 +93,157 @@ if (empty($_SESSION['nombre'])) {
 
       <!-- Modal body -->
     <div class="modal-body">
-      <form id="crearreserva">
-      <!-- method="POST" action="../reserva/crearreserva.php" -->
-          <label for="mesa">Mesa:</label><br>
-            <select name="mesa" id="mesa">
+    <form id="editreserva">
+    <input type="hidden" name="id_registro" id="id_registro">
+    <label for="cliente">Cliente:</label>
+          <input type="text" id="cliente" name="cliente">
+          <br><label for="id_mesa">Mesa:</label><br>
+          <input type="text" id="cliente" name="cliente">
+            <!-- <select name="id_mesa" id="id_mesa">
               <?php
-                $query = $conexion -> prepare ("SELECT * FROM tbl_mesa");
-                $query -> execute();
+                //  $query = $conexion -> prepare ("SELECT * FROM tbl_mesa");
+                //  $query -> execute();
               
-                $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
-                  foreach ($resultado as $valores) {
+                //  $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
+                //    foreach ($resultado as $valores) {
                       
-                  echo '<option value=" Mesa'.$valores["id_mesa"].'">'.$valores["num_mesa"].'</option>';
-                }
+                //   echo '<option value=" Mesa'.$valores["id_mesa"].'">'.$valores["num_mesa"].'</option>';
+                //  }
               ?>
-            </select>
+            </select> -->
             <br>
-          <label for="mesa">Cliente:</label><br>
-          <input type="text" id="cliente" name="cliente" placeholder="Cliente" min="1" max="20"><br>
+          
           <label for="comensales">Comensales:</label><br>
           <input type="number" id="comensales" name="comensales" min="1">
           <br>
-          <label for="mesa">Quien deseas que sea tu camarero:</label><br>
-          <select name="fk_id_empleado" id="fk_id_empleado">
+          <label for="id_camarero">Quien deseas que sea tu camarero:</label><br>
+          <select name="id_camarero" id="id_camarero">
+            <option value="12">Luis Enrique</option>
+            <option value="9">Marcos Alonso</option>
+            <option value="20">Alberto de Santos</option>
               <?php
-                $query = $conexion -> prepare ("SELECT * FROM tbl_empleado where id=1");
-                $query -> execute();
+                //  $query = $conexion -> prepare ("SELECT * FROM tbl_empleado where fk_cargo_empleado=1");
+                //  $query -> execute();
               
-                $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
-                  foreach ($resultado as $valores) {
+                //  $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
+                //    foreach ($resultado as $valores) {
                       
-                  echo '<option value=" Mesa'.$valores["id_empleado"].'">'.$valores["nom_empleado"].'</option>';
-                }
+                //    echo '<option value=" Mesa'.$valores["id_empleado"].'">'.$valores["nom_empleado"].'</option>';
+                //  }
               ?>
             </select>
       <br>
       <br>
-        <input type="date" id="fecha" name="fecha" value="2022-11-27" min="2022-11-27" max="2023-12-30">
+      <input type="date" id="fecha" name="fecha" value="2022-11-27" min="2022-11-27" max="2023-12-30">
       <br>
+      <select id="hora" name="hora">
+            <option value="13:00:00">13:00</option>
+            <option value="14:00:00">14:00</option>
+            <option value="15:00:00">15:00</option>
+            <option value="20:00:00">20:00</option>
+            <option value="21:00:00">21:00</option>
+            <option value="22:00:00">22:00</option>
+      </select>
       <br>
         <input type="submit" class="btn btn-success" data-bs-dismiss="modal">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
       </form> 
     </div>
 
-      <!-- Modal footer -->
-      <!-- <div class="modal-footer">
+    
+
+    </div>
+  </div>
+</div> 
+
+  <!-- BOTON AÑADIR RESERVA:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+  
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Reservar</button>
+  <br>
+            
+<!-- The Modal -->
+
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+
+      <!-- Modal Header -->
+
+      <div class="modal-header">
+        <h4 class="modal-title">Reservar una mesa:</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+
+      <!-- Modal body --> 
+     <div class="modal-body">
+     <form id="crearreserva">
+      
+     <label for="comensales">Cliente:</label>
+          <input type="text" id="cliente" name="cliente" >
+          <br>
+          <label for="mesa">Mesa:</label><br>
+            <!-- <select name="mesa" id="mesa">  -->
+            <input type="number" id="mesa" name="mesa" min=1 max=20>
+              <?php
+                // $query = $conexion -> prepare ("SELECT * FROM tbl_mesa");
+                // $query -> execute();
+              
+                // $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
+                //   foreach ($resultado as $valores) {
+                      
+                //   echo '<option value=" Mesa'.$valores["id_mesa"].'">'.$valores["id_mesa"].'</option>';
+                // }
+              ?>
+             </select>
+            <br>
+        
+          <label for="comensales">Comensales:</label><br>
+          <input type="number" id="comensales" name="comensales" min="1">
+          <br>
+          <label for="fk_id_empleado">Quien deseas que sea tu camarero:</label><br>
+          <select name="fk_id_empleado" id="fk_id_empleado"> 
+          <option value="3">Luis Enrique</option>
+            <option value="11">Marcos Alonso</option>
+            <option value="12">Alberto de Santos</option>
+              <?php
+                //  $query = $conexion -> prepare ("SELECT * FROM tbl_empleado where fk_cargo_empleado=1");
+                //  $query -> execute();
+              
+                //  $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
+                //    foreach ($resultado as $valores) {
+                      
+                //    echo '<option value=" Mesa'.$valores["id_empleado"].'">'.$valores["nom_empleado"].'</option>';
+                //  }
+              ?>
+             </select>
+             
+      <br>
+      <br>
+        <input type="date" id="fecha" name="fecha" value="2022-11-27" min="2022-11-27" max="2023-12-30">
+      <br>
+      <select id="hora" name="hora">
+            <option value="13:00:00">13:00</option>
+            <option value="14:00:00">14:00</option>
+            <option value="15:00:00">15:00</option>
+            <option value="20:00:00">20:00</option>
+            <option value="21:00:00">21:00</option>
+            <option value="22:00:00">22:00</option>
+      </select>
+      <br>
+        <input type="submit" class="btn btn-success" data-bs-dismiss="modal">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div> -->
+      </form>  
+    </div> 
+
+     
 
     </div>
   </div>
 </div>
+
+
               <!-- TABLA -->
                 <table class="table">
                     <thead>
@@ -164,7 +263,9 @@ if (empty($_SESSION['nombre'])) {
             </div>
         </div>
     </div>
-    <script src="../reserva/today.js"></script>
+
+    
+    <!-- <script src="../reserva/today.js"></script> -->
     <script src="../reserva/scriptreserva.js"></script> 
     
 </body>
