@@ -46,7 +46,7 @@ function Eliminar(id_registro) {
             if (ajax.responseText === "OK") {
                 Swal.fire(
                     'Eliminado!',
-                    'Tu reserva se ha eliminado con exito!',
+                    'Tu reserva se ha eliminado con éxito!',
                     'success')
                 listar('');
             }
@@ -101,26 +101,27 @@ function crear() {
             if (ajax.responseText == "OK") {
                 Swal.fire(
                     '¡Reservado!',
-                    'Tu reserva a sido creada con exito!',
+                    'Tu reserva ha sido creada con éxito!',
                     'success')
                 listar('');
                 // console.log('hola');
+            } else if (ajax.responseText == "NOOK") {
+                console.log(ajax.responseText);
+                Swal.fire(
+                    '¡Algo a salido mal!',
+                    'No se pueden crear reservas para fechas anteriores al día de hoy',
+                    'error')
+                listar('');
+                // console.log('adios');
+            } else if (ajax.responseText == "YAEXISTE") {
+                console.log(ajax.responseText);
+                Swal.fire(
+                    '¡Algo a salido mal!',
+                    'Ya existe una reserva en esta mesa para esta hora en ese mismo día.',
+                    'error')
+                listar('');
             }
-        } else if (ajax.responseText == "NOOK") {
-            console.log(ajax.responseText);
-            Swal.fire(
-                '¡Algo a salido mal!',
-                'No se pueden crear reservas para fechas anteriores al dia de hoy',
-                'error')
-            listar('');
-            // console.log('adios');
-        } else if (ajax.responseText == "YAEXISTE") {
-            console.log(ajax.responseText);
-            Swal.fire(
-                '¡Algo a salido mal!',
-                'Ya existe una reserva en esta mesa para esta hora en ese mismo dia.',
-                'error')
-            listar('');
+
         } else {
             Swal.fire(
                 '¡Algo a salido mal!',
@@ -196,7 +197,10 @@ function update() {
         if (ajax.status === 200) {
             // console.log(ajax.responseText);
             if (ajax.responseText == "OK") {
-                alert('Elemento modificar con id: ');
+                Swal.fire(
+                    '¡Reservado!',
+                    'Tu reserva ha sido modificada con éxito!',
+                    'success')
                 listar('');
                 // console.log('hola');
             }

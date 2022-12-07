@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-11-2022 a las 15:15:41
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 7.4.29
+-- Tiempo de generación: 08-12-2022 a las 00:41:10
+-- Versión del servidor: 10.4.27-MariaDB
+-- Versión de PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bd_restaurante`
 --
-CREATE DATABASE IF NOT EXISTS `bd_restaurante` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `bd_restaurante`;
 
 -- --------------------------------------------------------
 
@@ -32,7 +30,7 @@ USE `bd_restaurante`;
 CREATE TABLE `tbl_cargo` (
   `id_cargo` int(11) NOT NULL,
   `nom_cargo` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_cargo`
@@ -40,7 +38,8 @@ CREATE TABLE `tbl_cargo` (
 
 INSERT INTO `tbl_cargo` (`id_cargo`, `nom_cargo`) VALUES
 (1, 'Camarero'),
-(2, 'Mantenimiento');
+(2, 'Mantenimiento'),
+(3, 'Admin');
 
 -- --------------------------------------------------------
 
@@ -53,19 +52,23 @@ CREATE TABLE `tbl_empleado` (
   `nom_empleado` varchar(20) NOT NULL,
   `ape_empleado` varchar(20) NOT NULL,
   `dni_empleado` varchar(9) NOT NULL,
-  `password_empleado` text NOT NULL,
+  `password` text NOT NULL,
   `fk_cargo_empleado` int(11) NOT NULL,
-  `email_empleado` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `email` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_empleado`
 --
 
-INSERT INTO `tbl_empleado` (`id_empleado`, `nom_empleado`, `ape_empleado`, `dni_empleado`, `password_empleado`, `fk_cargo_empleado`, `email_empleado`) VALUES
-(7, 'Sergi', 'Garcia', '47864649Q', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1, ''),
-(9, 'Carlos', 'Piedras', '47864650V', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1, 'carlos@gmail.com'),
-(10, 'Alejandro', 'Lay', '46785678F', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 2, '');
+INSERT INTO `tbl_empleado` (`id_empleado`, `nom_empleado`, `ape_empleado`, `dni_empleado`, `password`, `fk_cargo_empleado`, `email`) VALUES
+(7, 'Sergio', 'Garcia', '47864649Q', '1234', 3, 'sergi@gmail.com'),
+(9, 'Marcos', 'Alonso', '47864650V', '1234', 1, 'marcos@gmail.com'),
+(10, 'Alejandro', 'Lay', '46785678F', '1234', 2, 'alejandro@gmail.com'),
+(12, 'Luis', 'Enrique', '76864598K', '1234', 1, 'lenrique@gmail.com'),
+(20, 'Alberto', 'De Santos', '47864650V', '1234', 1, 'adesantos@gmail.com'),
+(21, 'Sergi', 'vegano', '85774523W', '1234', 1, 'test1@gmail.com'),
+(22, 'Raul', 'Muñoz', '47864649Q', '1234', 1, 'rmunoz@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -78,14 +81,13 @@ CREATE TABLE `tbl_incidencia` (
   `nom_inc` varchar(200) NOT NULL,
   `estado_inc` tinyint(1) NOT NULL,
   `fk_mesa_inc` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_incidencia`
 --
 
 INSERT INTO `tbl_incidencia` (`id_inc`, `nom_inc`, `estado_inc`, `fk_mesa_inc`) VALUES
-(3, 'test', 0, 1),
 (4, 'test', 0, 1),
 (5, 'test', 0, 2),
 (6, 'test', 0, 1),
@@ -111,7 +113,7 @@ CREATE TABLE `tbl_mesa` (
   `estado_mesa` enum('0','1','2') NOT NULL,
   `fk_num_sala` int(11) DEFAULT NULL,
   `capacidad_mesa` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_mesa`
@@ -123,8 +125,8 @@ INSERT INTO `tbl_mesa` (`id_mesa`, `num_mesa`, `estado_mesa`, `fk_num_sala`, `ca
 (3, 3, '0', 1, 6),
 (4, 4, '0', 2, 4),
 (5, 5, '0', 2, 8),
-(6, 10, '0', 3, 10),
-(7, 11, '0', 1, 8),
+(6, 6, '0', 3, 10),
+(7, 7, '0', 1, 8),
 (8, 8, '0', 1, 2),
 (9, 9, '0', 1, 2),
 (10, 10, '0', 1, 2),
@@ -147,39 +149,26 @@ INSERT INTO `tbl_mesa` (`id_mesa`, `num_mesa`, `estado_mesa`, `fk_num_sala`, `ca
 
 CREATE TABLE `tbl_registro` (
   `id_registro` int(11) NOT NULL,
-  `fecha_entrada` datetime NOT NULL,
-  `fecha_salida` datetime DEFAULT NULL,
+  `cliente` varchar(30) NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` time DEFAULT NULL,
   `id_mesa` int(11) NOT NULL,
-  `id_camarero` int(11) NOT NULL,
   `num_comensales` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_registro`
 --
 
-INSERT INTO `tbl_registro` (`id_registro`, `fecha_entrada`, `fecha_salida`, `id_mesa`, `id_camarero`, `num_comensales`) VALUES
-(1, '2022-11-07 14:00:00', '2022-11-07 15:05:00', 1, 10, 4),
-(2, '2022-11-08 17:15:58', '2022-11-08 17:36:13', 1, 9, 2),
-(3, '2022-11-08 17:23:55', '2022-11-08 17:35:46', 1, 9, 2),
-(4, '2022-11-08 17:24:21', '2022-11-08 17:35:20', 1, 9, 2),
-(5, '2022-11-09 19:22:57', NULL, 1, 9, 1),
-(6, '2022-11-09 19:28:56', '2022-11-09 19:29:06', 1, 9, 1),
-(7, '2022-11-09 19:29:29', '2022-11-09 19:29:40', 1, 9, 1),
-(8, '2022-11-09 19:29:54', '2022-11-09 19:30:04', 1, 9, 1),
-(9, '2022-11-10 17:47:44', '2022-11-10 18:17:13', 1, 9, 2),
-(10, '2022-11-10 17:50:59', '2022-11-10 17:58:53', 2, 9, 2),
-(11, '2022-11-10 17:53:14', '2022-11-10 18:17:19', 3, 9, 2),
-(12, '2022-11-10 18:17:30', '2022-11-10 18:17:35', 1, 9, 1),
-(13, '2022-11-10 18:23:15', '2022-11-10 18:23:18', 1, 9, 2),
-(14, '2022-11-10 19:11:40', '2022-11-10 19:11:43', 1, 9, 2),
-(15, '2022-11-11 17:34:59', '2022-11-11 17:35:04', 1, 9, 2),
-(16, '2022-11-14 14:57:13', '2022-11-14 14:57:19', 1, 9, 4),
-(17, '2022-11-14 14:57:55', '2022-11-14 14:58:03', 1, 9, 2),
-(18, '2022-11-14 14:59:54', '2022-11-14 14:59:56', 1, 9, 1),
-(19, '2022-11-14 15:00:16', '2022-11-14 15:21:00', 1, 9, 2),
-(20, '2022-11-14 15:24:48', '2022-11-14 15:25:02', 1, 9, 2),
-(21, '2022-11-14 15:58:26', '2022-11-14 15:58:38', 1, 9, 2);
+INSERT INTO `tbl_registro` (`id_registro`, `cliente`, `fecha`, `hora`, `id_mesa`, `num_comensales`) VALUES
+(34, 'Eric', '2022-12-09', '14:00:00', 6, 7),
+(35, 'Monica', '2022-12-10', '22:00:00', 1, 3),
+(36, 'Sergi', '2022-12-22', '15:00:00', 3, 3),
+(37, 'Álvar', '2022-12-08', '14:00:00', 2, 3),
+(38, 'Eustakio', '2022-12-08', '15:00:00', 2, 3),
+(41, 'Alberto', '2022-12-22', '20:00:00', 5, 7),
+(42, 'Victor', '2022-12-09', '13:00:00', 7, 6),
+(45, 'Camp Nous', '2022-12-08', '15:00:00', 7, 3);
 
 -- --------------------------------------------------------
 
@@ -190,7 +179,7 @@ INSERT INTO `tbl_registro` (`id_registro`, `fecha_entrada`, `fecha_salida`, `id_
 CREATE TABLE `tbl_sala` (
   `id_sala` int(11) NOT NULL,
   `nom_sala` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_sala`
@@ -237,8 +226,7 @@ ALTER TABLE `tbl_mesa`
 --
 ALTER TABLE `tbl_registro`
   ADD PRIMARY KEY (`id_registro`),
-  ADD KEY `id_mesa` (`id_mesa`),
-  ADD KEY `id_camarero` (`id_camarero`);
+  ADD KEY `id_mesa` (`id_mesa`);
 
 --
 -- Indices de la tabla `tbl_sala`
@@ -254,13 +242,13 @@ ALTER TABLE `tbl_sala`
 -- AUTO_INCREMENT de la tabla `tbl_cargo`
 --
 ALTER TABLE `tbl_cargo`
-  MODIFY `id_cargo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_cargo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_empleado`
 --
 ALTER TABLE `tbl_empleado`
-  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_incidencia`
@@ -278,7 +266,7 @@ ALTER TABLE `tbl_mesa`
 -- AUTO_INCREMENT de la tabla `tbl_registro`
 --
 ALTER TABLE `tbl_registro`
-  MODIFY `id_registro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_registro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_sala`
@@ -307,13 +295,6 @@ ALTER TABLE `tbl_incidencia`
 --
 ALTER TABLE `tbl_mesa`
   ADD CONSTRAINT `tbl_mesa_ibfk_1` FOREIGN KEY (`fk_num_sala`) REFERENCES `tbl_sala` (`id_sala`) ON DELETE SET NULL ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `tbl_registro`
---
-ALTER TABLE `tbl_registro`
-  ADD CONSTRAINT `tbl_registro_ibfk_1` FOREIGN KEY (`id_camarero`) REFERENCES `tbl_empleado` (`id_empleado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `tbl_registro_ibfk_2` FOREIGN KEY (`id_mesa`) REFERENCES `tbl_mesa` (`id_mesa`) ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

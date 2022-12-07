@@ -1,4 +1,4 @@
-var perror = document.getElementById(email);
+var perror = document.getElementById("email");
 //console.log(perror['value']);
 
 function validarEmail() {

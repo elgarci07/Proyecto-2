@@ -40,9 +40,20 @@ if (empty($_SESSION['nombre'])) {
         <nav class="d-flex bd-highlight mb-5 navbar bg-dark" style="padding: 0.5% 7.5%;">
 
         <!-- LINKS MENU -->
-        <div class="p-2 bd-highlight text-white" style="font-size:20px"><a style="text-decoration: none; color: white;" href="../view/index.php">Reservas</a></div>
+        <?php
+        //if (!isset($_SESSION['Admin'])){
+          ?>
+          <div class="p-2 bd-highlight text-white" style="font-size:20px"><a style="text-decoration: none; color: white;" href="../view/index.php">Reservas</a></div>
+          <div class="p-2 bd-highlight text-white" style="font-size:20px"><a style="text-decoration: none; color: white;" href="../Crud-Ajax/empleados.php">Empleados</a></div>
+          <div class="p-2 bd-highlight text-white" style="font-size:20px"><a style="text-decoration: none; color: white;" href="../mesas/mesas.php">Mesas</a></div>
+          <?php
+        //}     
+        ?>
+        
+        
+        <!-- <div class="p-2 bd-highlight text-white" style="font-size:20px"><a style="text-decoration: none; color: white;" href="../view/index.php">Reservas</a></div>
         <div class="p-2 bd-highlight text-white" style="font-size:20px"><a style="text-decoration: none; color: white;" href="../Crud-Ajax/empleados.php">Empleados</a></div>
-        <div class="p-2 bd-highlight text-white" style="font-size:20px"><a style="text-decoration: none; color: white;" href="../mesas/mesas.php">Mesas</a></div>
+        <div class="p-2 bd-highlight text-white" style="font-size:20px"><a style="text-decoration: none; color: white;" href="../mesas/mesas.php">Mesas</a></div> -->
 
             <div class="ms-auto p-2 bd-highlight text-white">
                 <form method='post' action="../function/cerrarlogin.php">

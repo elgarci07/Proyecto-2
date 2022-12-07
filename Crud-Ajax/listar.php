@@ -42,7 +42,7 @@ if(empty($_POST['filtro'])){
      OR nom_empleado LIKE '%".$filtro."%' 
      OR ape_empleado LIKE '%".$filtro."%'
      OR dni_empleado LIKE '%".$filtro."%'
-      
+     OR nom_cargo LIKE '%".$filtro."%'
      OR email LIKE '%".$filtro."%'
      OR password LIKE '%".$filtro."%'
     

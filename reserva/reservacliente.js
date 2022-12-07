@@ -20,13 +20,28 @@ function crear() {
                     'success')
                 listar('');
                 // console.log('hola');
+            } else if (ajax.responseText == "NOOK") {
+                console.log(ajax.responseText);
+                Swal.fire(
+                    '¡Algo a salido mal!',
+                    'No se pueden crear reservas para fechas anteriores al dia de hoy',
+                    'error')
+                listar('');
+                // console.log('adios');
+            } else if (ajax.responseText == "YAEXISTE") {
+                console.log(ajax.responseText);
+                Swal.fire(
+                    '¡Algo a salido mal!',
+                    'Ya existe una reserva en esta mesa para esta hora en ese mismo dia.',
+                    'error')
+                listar('');
             }
+
         } else {
             Swal.fire(
-                    '¡Algo a salido mal!',
-                    'Comprueba que todos los campos sean correctos!',
-                    'error')
-                // console.log('adios');
+                '¡Algo a salido mal!',
+                'Arregla esto marica que algo va mal',
+                'error')
         }
     };
     ajax.send(formdata);

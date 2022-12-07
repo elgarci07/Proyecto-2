@@ -53,5 +53,5 @@ echo "OK";
 
 //SI YA ESTA UNA RESERVA MISMA HORA MISMA FECHA SALTA AQUI
 }else{
-    echo "YA EXISTE";
+    echo "YAEXISTE";
 }

@@ -42,6 +42,7 @@ if (isset($_POST['boton']))
                 // echo $_SESSION['nombre'];
                 // $_SESSION['id_empleado'] = $username;
                 $_SESSION['id_empleado'] = $datos['id_empleado'];
+                $_SESSION['cargo'] = $datos['fk_cargo_empleado'];
                 // print_r($_SESSION['id_empleado']);
                 // die();
                 // print_r($username);
