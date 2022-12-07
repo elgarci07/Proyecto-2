@@ -9,3 +9,5 @@
 
 
  Cada vez que se ocupa una mesa, queda bloqueada durante 1 hora, el tiempo que tienen nuestros comensales para comer. No se podran realizar reservas en esa misma mesa a la vez. 
+
+ https://github.com/elgarci07/Proyecto-2
