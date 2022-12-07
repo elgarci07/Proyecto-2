@@ -180,7 +180,7 @@ include "../config/conexion.php";
             <img src="img/plato2.jpg" alt="Cocretas">
         </div>
         <div class="three-column">
-            <img src="img/plato6.jpg" alt="Barvas">
+            <img src="img/plato6.jpg" alt="Bravas">
         </div>
     </div>
     <div class="row" id="section-3">
@@ -191,7 +191,7 @@ include "../config/conexion.php";
             <img src="img/plato4.jpg" alt="Pulpo">
         </div>
         <div class="three-column">
-            <img src="img/plato5.jpg" alt="Pa amb tomaquet">
+            <img src="img/plato5.jpg" alt="Pantomacà">
         </div>
 
     </div>

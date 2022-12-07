@@ -43,7 +43,8 @@ if(empty($_POST['filtro'])){
                 <td>" . $data['id_mesa'] . "</td>        
                 
                 <td>                    
-                    <button type='button' class='btn btn-danger' onclick=Eliminar('" . $data['id_registro'] . "')>Eliminar</button>
+                <button type='button' class='btn btn-success' onclick=editar('" . $data['id_registro'] . "')>Editar</button>    
+                <button type='button' class='btn btn-danger' onclick=Eliminar('" . $data['id_registro'] . "')>Eliminar</button>
                 </td>        
             </tr>";
     };

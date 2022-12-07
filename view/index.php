@@ -98,6 +98,8 @@ if (empty($_SESSION['nombre'])) {
     <label for="cliente">Cliente:</label>
           <input type="text" id="cliente" name="cliente">
           <br><label for="id_mesa">Mesa:</label><br>
+          <input type="number" id="id_mesa" name="id_mesa">
+          <br><label for="cliente">Cliente:</label><br>
           <input type="text" id="cliente" name="cliente">
             <!-- <select name="id_mesa" id="id_mesa">
               <?php

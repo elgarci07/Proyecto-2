@@ -13,7 +13,7 @@ function listar(filtro) {
             console.log('Lista');
         } else {
             resultado.innerText = 'Error';
-            console.log('NO Entra');
+            console.log('No Entra');
         }
     }
     ajax.send(formdata);
@@ -149,8 +149,9 @@ function editar(id_registro) {
             document.getElementById('cliente').value = json.cliente;
             document.getElementById('fecha').value = json.fecha;
             document.getElementById('hora').value = json.hora;
+            console.log(document.getElementById('fecha').value = json.fecha);
             document.getElementById('id_mesa').value = json.id_mesa;
-            document.getElementById('id_camarero').value = json.id_camarero;
+            //document.getElementById('id_camarero').value = json.id_camarero;
             document.getElementById('comensales').value = json.num_comensales;
 
             // document.getElementById('registrar').value = "Actualizar";
@@ -170,7 +171,7 @@ function update() {
     var form = document.getElementById('editempleado');
     console.log(form);
     const formdata = new FormData(form);
-
+    console.log("Entra en update");
 
     const ajax = new XMLHttpRequest();
     console.log(ajax);
