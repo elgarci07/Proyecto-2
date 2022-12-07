@@ -69,7 +69,7 @@ include "../config/conexion.php";
 
 
       <!-- Modal body --> 
-      <div class="modal-body">
+     <div class="modal-body">
      <form id="crearreserva">
       
      <label for="comensales">Cliente:</label>
@@ -113,6 +113,7 @@ include "../config/conexion.php";
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
       </form>  
     </div> 
+
 
      
 
@@ -214,6 +215,7 @@ include "../config/conexion.php";
 
 <script src="../static/js/menu.js"></script>
 <script src="../static/js/slider.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </html>
 

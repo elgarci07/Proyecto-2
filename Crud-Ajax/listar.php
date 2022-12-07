@@ -37,10 +37,12 @@ if(empty($_POST['filtro'])){
 //PREPARAMOS FILTRO CON LOS CAMPOS :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
     $consulta = $conexion->prepare("SELECT * FROM tbl_empleado 
+    INNER JOIN tbl_cargo ON tbl_empleado.fk_cargo_empleado=tbl_cargo.id_cargo
      WHERE id_empleado LIKE '%".$filtro."%'
      OR nom_empleado LIKE '%".$filtro."%' 
      OR ape_empleado LIKE '%".$filtro."%'
-     OR dni_empleado LIKE '%".$filtro."%'  
+     OR dni_empleado LIKE '%".$filtro."%'
+      
      OR email LIKE '%".$filtro."%'
      OR password LIKE '%".$filtro."%'
     
@@ -58,7 +60,7 @@ if(empty($_POST['filtro'])){
                 <td>" . $data['nom_empleado'] . "</td>
                 <td>" . $data['ape_empleado'] . "</td>
                 <td>" . $data['dni_empleado'] . "</td>
-                
+                <td>" . $data['nom_cargo'] . "</td>
                 <td>" . $data['email'] . "</td>
                 <td>" . $data['password'] . "</td>
                 

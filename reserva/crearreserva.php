@@ -21,9 +21,17 @@ if (!empty($mesa && $cliente && $comensales && $fecha && $hora)) {
     //----------------------------------------------------------------
 }
 
-if ($fecha < $fecha_actual) {
 
-}else if ($fecha > $fecha_actual) {
+//HACE SELECT PARA RECOGER SI EXISTE UNA RESERVA
+$selectfecha = $conexion->prepare("SELECT id_mesa, fecha, hora FROM `tbl_registro` WHERE id_mesa=$mesa && fecha='$fecha' && hora='$hora'");
+$selectfecha -> execute();
+$selectfecharec = $selectfecha->fetchAll(PDO::FETCH_ASSOC);
+
+//COMPARA FECHA CON ACTUAL PARA QUE LA RESERVA NO SEA ANTERIOR
+if ($fecha < $fecha_actual) {
+echo "NOOK";
+//MIRA SI ES CORRECTO
+}else if ($fecha > $fecha_actual && empty($selectfecharec)) {
 
 
 
@@ -42,4 +50,8 @@ $query->execute();
 
 
 echo "OK";
+
+//SI YA ESTA UNA RESERVA MISMA HORA MISMA FECHA SALTA AQUI
+}else{
+    echo "YA EXISTE";
 }

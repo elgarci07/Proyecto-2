@@ -99,8 +99,8 @@ if (empty($_SESSION['nombre'])) {
           <input type="text" id="cliente" name="cliente">
           <br><label for="id_mesa">Mesa:</label><br>
           <input type="number" id="id_mesa" name="id_mesa">
-          <br><label for="cliente">Cliente:</label><br>
-          <input type="text" id="cliente" name="cliente">
+          <br><br>
+          
             <!-- <select name="id_mesa" id="id_mesa">
               <?php
                 //  $query = $conexion -> prepare ("SELECT * FROM tbl_mesa");
@@ -192,7 +192,7 @@ if (empty($_SESSION['nombre'])) {
              
       <br>
       <br>
-        <input type="date" id="fecha" name="fecha" value="2022-12-07" min="2022-12-07" max="2023-12-30">
+        <input type="date" id="fecha" name="fecha" value="2022-12-07" min="2022-12-06" max="2023-12-30">
       <br>
       <select id="hora" name="hora">
             <option value="13:00:00">13:00</option>
@@ -239,6 +239,7 @@ if (empty($_SESSION['nombre'])) {
     <!-- <script src="../reserva/today.js"></script> -->
     <script src="../reserva/scriptreserva.js"></script> 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script src="../static/js/vallog.js"></script>  -->
     
 </body>
 

@@ -25,12 +25,11 @@
                 <div id="div_login">
 
                     <div>
-                        <form method="post" action="../function/controllerlogin.php">
+                        <form onsubmit="return validarEmail()" method="post" action="../function/controllerlogin.php">
 
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Correo</label>
-                                <input type="text" class="form-control" name="nombre" aria-describedby="emailHelp" id="email"
-                                    >
+                                <input  type="text" class="form-control" name="nombre" aria-describedby="emailHelp" id="email">
                             </div>
 
                             <div class="mb-3">
@@ -40,6 +39,7 @@
 
                             <button  type="submit" class="btn btn-primary" name="boton" id="password">Iniciar sesión</button>
                             <!-- <button onclick="return validaFormulario()" type="submit" class="btn btn-primary" name="boton" id="password">Iniciar sesión</button> -->
+                        <p id="emailp"></p>
                         </form>
                     </div>
 
@@ -60,7 +60,7 @@
 
 
 
-    <!-- <script src="../static/js/vallog.js"></script>  -->
+    <script src="../static/js/vallog.js"></script> 
 
 
 
