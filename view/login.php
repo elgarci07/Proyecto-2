@@ -17,7 +17,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h3>Login PDO</h3>
+                <h3>ACCEDE A LA INTRANET</h3>
                 <hr>
             </div>
             <div class="col-md-6">
@@ -29,17 +29,17 @@
 
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Correo</label>
-                                <input type="text" class="form-control" name="nombre" aria-describedby="emailHelp"
-                                    required>
+                                <input type="text" class="form-control" name="nombre" aria-describedby="emailHelp" id="email"
+                                    >
                             </div>
 
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class="form-label">Password</label>
-                                <input type="password" class="form-control" name="pwd" required>
+                                <input type="password" class="form-control" name="pwd" >
                             </div>
 
-                            <button type="submit" class="btn btn-primary" name="boton">Iniciar sesión</button>
-
+                            <button  type="submit" class="btn btn-primary" name="boton" id="password">Iniciar sesión</button>
+                            <!-- <button onclick="return validaFormulario()" type="submit" class="btn btn-primary" name="boton" id="password">Iniciar sesión</button> -->
                         </form>
                     </div>
 
@@ -48,6 +48,24 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <script src="../static/js/vallog.js"></script>  -->
+
+
+
+    
+
 </body>
 
 </html>

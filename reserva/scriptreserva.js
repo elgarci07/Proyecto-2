@@ -44,7 +44,10 @@ function Eliminar(id_registro) {
     ajax.onload = function() {
         if (ajax.status == 200) {
             if (ajax.responseText === "OK") {
-                alert('Elemento eliminado con id: ' + id_registro);
+                Swal.fire(
+                    'Eliminado!',
+                    'Tu reserva se ha eliminado con exito!',
+                    'success')
                 listar('');
             }
         } else {
@@ -95,13 +98,19 @@ function crear() {
         if (ajax.status === 200) {
             console.log(ajax.responseText);
             if (ajax.responseText == "OK") {
-                alert('Elemento creado con id: ');
+                Swal.fire(
+                    '¡Reservado!',
+                    'Tu reserva a sido creada con exito!',
+                    'success')
                 listar('');
                 // console.log('hola');
             }
         } else {
-            alert('errorisimo');
-            // console.log('adios');
+            Swal.fire(
+                    '¡Algo a salido mal!',
+                    'Comprueba que todos los campos sean correctos!',
+                    'error')
+                // console.log('adios');
         }
     };
     ajax.send(formdata);

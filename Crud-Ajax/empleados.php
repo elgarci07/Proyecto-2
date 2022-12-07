@@ -122,40 +122,6 @@ if (empty($_SESSION['nombre'])) {
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- modal Crear :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
 
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Crear empleado</button>
@@ -234,7 +200,8 @@ if (empty($_SESSION['nombre'])) {
         </div>
     </div>
     <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

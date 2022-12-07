@@ -1,6 +1,11 @@
 <?php
 include "../config/conexion.php";
 
+// Llamar a pagina
+$entrada_valida = true;
+require_once '../view/login.php';
+
+
 // On submit ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 if (isset($_POST['boton'])) 
 {
@@ -45,5 +50,8 @@ if (isset($_POST['boton']))
                 header('Location: ../view/index.php');
             }
 }
+
+
+
 
 ?>

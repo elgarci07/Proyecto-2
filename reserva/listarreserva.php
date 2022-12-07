@@ -25,7 +25,7 @@ if(empty($_POST['filtro'])){
      OR fecha LIKE '%".$filtro."%'
      OR hora LIKE '%".$filtro."%'
      OR id_mesa LIKE '%".$filtro."%'
-     OR id_camarero LIKE '%".$filtro."%'  
+       
     ");
      $consulta->execute();
 }
@@ -40,12 +40,9 @@ if(empty($_POST['filtro'])){
                 <td>" . $data['num_comensales'] . "</td>
                 <td>" . $data['fecha'] . "</td>
                 <td>" . $data['hora'] . "</td>
-                <td>" . $data['id_mesa'] . "</td>
-                <td>" . $data['id_camarero'] . "</td>
+                <td>" . $data['id_mesa'] . "</td>        
                 
-                
-                <td>
-                   
+                <td>                    
                     <button type='button' class='btn btn-danger' onclick=Eliminar('" . $data['id_registro'] . "')>Eliminar</button>
                 </td>        
             </tr>";

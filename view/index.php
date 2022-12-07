@@ -114,25 +114,9 @@ if (empty($_SESSION['nombre'])) {
             <br>
           
           <label for="comensales">Comensales:</label><br>
-          <input type="number" id="comensales" name="comensales" min="1">
+          <input type="number" id="comensales" name="comensales" min="1" max="20">
           <br>
-          <label for="id_camarero">Quien deseas que sea tu camarero:</label><br>
-          <select name="id_camarero" id="id_camarero">
-            <option value="12">Luis Enrique</option>
-            <option value="9">Marcos Alonso</option>
-            <option value="20">Alberto de Santos</option>
-              <?php
-                //  $query = $conexion -> prepare ("SELECT * FROM tbl_empleado where fk_cargo_empleado=1");
-                //  $query -> execute();
-              
-                //  $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
-                //    foreach ($resultado as $valores) {
-                      
-                //    echo '<option value=" Mesa'.$valores["id_empleado"].'">'.$valores["nom_empleado"].'</option>';
-                //  }
-              ?>
-            </select>
-      <br>
+      
       <br>
       <input type="date" id="fecha" name="fecha" value="2022-11-27" min="2022-11-27" max="2023-12-30">
       <br>
@@ -202,26 +186,11 @@ if (empty($_SESSION['nombre'])) {
           <label for="comensales">Comensales:</label><br>
           <input type="number" id="comensales" name="comensales" min="1">
           <br>
-          <label for="fk_id_empleado">Quien deseas que sea tu camarero:</label><br>
-          <select name="fk_id_empleado" id="fk_id_empleado"> 
-          <option value="3">Luis Enrique</option>
-            <option value="11">Marcos Alonso</option>
-            <option value="12">Alberto de Santos</option>
-              <?php
-                //  $query = $conexion -> prepare ("SELECT * FROM tbl_empleado where fk_cargo_empleado=1");
-                //  $query -> execute();
-              
-                //  $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
-                //    foreach ($resultado as $valores) {
-                      
-                //    echo '<option value=" Mesa'.$valores["id_empleado"].'">'.$valores["nom_empleado"].'</option>';
-                //  }
-              ?>
-             </select>
+         
              
       <br>
       <br>
-        <input type="date" id="fecha" name="fecha" value="2022-11-27" min="2022-11-27" max="2023-12-30">
+        <input type="date" id="fecha" name="fecha" value="2022-12-07" min="2022-12-07" max="2023-12-30">
       <br>
       <select id="hora" name="hora">
             <option value="13:00:00">13:00</option>
@@ -267,6 +236,7 @@ if (empty($_SESSION['nombre'])) {
     
     <!-- <script src="../reserva/today.js"></script> -->
     <script src="../reserva/scriptreserva.js"></script> 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
 </body>
 
